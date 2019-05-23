@@ -1,0 +1,28 @@
+{
+  "name": "fido-u2f-credentials",
+  "version": "0.0.1",
+  "description": "Create and get FIDO U2F credentials",
+  "browser": "browser.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "keywords": [
+    "fido",
+    "u2f",
+    "credentials"
+  ],
+  "author": "Joseph Werle <joseph.werle@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "tape": "^4.10.1"
+  },
+  "dependencies": {
+    "borc": "^2.1.0",
+    "debug": "^4.1.1",
+    "elliptic": "^6.4.1",
+    "extend": "^3.0.2",
+    "parse-asn1": "^5.1.4",
+    "sshpk": "^1.16.1"
+  }
+}
