@@ -1,4 +1,4 @@
-fido-u2f-credentials
+fido2-u2f-credentials
 ====================
 
 **WIP** Create and and get FIDO U2F credentials
@@ -6,13 +6,13 @@ fido-u2f-credentials
 ## Installation
 
 ```sh
-$ npm install fido-u2f-credentials
+$ npm install fido2-u2f-credentials
 ```
 
 ## Usage
 
 ```js
-const credentials = require('fido-u2f-credentials')
+const credentials = require('fido2-u2f-credentials')
 const attestationResponse = await credentials.create({
   rp: {
     id: window.location.hostname,
@@ -33,7 +33,7 @@ const attestationResponse = await credentials.create({
 ```
 
 ```js
-const credentials = require('fido-u2f-credentials')
+const credentials = require('fido2-u2f-credentials')
 const assertionResponse = await credentials.get({
   allowCredentials: [{
     id: response.id,

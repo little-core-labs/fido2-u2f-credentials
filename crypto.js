@@ -1,14 +1,10 @@
-const { randomBytes, createHash, createVerify } = require('crypto')
+const { randomBytes, createHash, createVerify } = require('crypto-browserify')
 const constants = require('./constants')
 const parseAsn1 = require('parse-asn1')
 const elliptic = require('elliptic')
 
 function hash(alg, buffer) {
-  const hashType = constantToHash(alg)
-
-  if (!hashType) {
-    return null
-  }
+  const hashType = constantToHash(alg) || alg
 
   return createHash(hashType).update(Buffer.from(buffer)).digest()
 }
@@ -21,20 +17,22 @@ function verify(alg, signature, data, publicKey) {
     throw new TypeError(`Invalid verification algorithm: ${alg}`)
   }
 
-  const verifier = createVerify(verifierType)
   const cert = parseAsn1(publicKey)
 
-  verifier.update(data).end()
-
   if (curveType) {
+    console.log('verifierType', verifierType);
+    console.log('curveType', curveType);
     const curve = elliptic.ec(curveType)
-    const digest = verifier._hash.digest()
+    const digest = hash(verifierType, data)
+    console.log('digest!', digest.toString('hex'));
     return curve.verify(
       digest,
       signature,
       cert.data.subjectPublicKey.data
     )
   } else {
+    const verifier = createVerify(verifierType)
+    verifier.update(data).end()
     return verifier.verifier(publicKey, Buffer.from(signature))
   }
 }

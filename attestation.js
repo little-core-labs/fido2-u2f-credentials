@@ -3,7 +3,7 @@ const defaults = require('./defaults')
 const crypto = require('./crypto')
 const assert = require('assert')
 const extend = require('extend')
-const debug = require('debug')('fido-u2f-credentials:attestation')
+const debug = require('debug')('fido2-u2f-credentials:attestation')
 const asn1 = require('./asn1')
 const cose = require('./cose')
 const borc = require('borc')
@@ -232,7 +232,22 @@ class Response {
         this.publicKey
       ])
 
+      console.log('digest?',
+        digest.length,
+        Buffer.from(clientDataJSON).toString(),
+        Buffer.from([ constants.FIDO_U2F_RESERVED_BYTE ]),
+        this.auth.rpIdHash.toString('hex'),
+        hash.toString('hex'),
+        this.auth.credId.length,
+        this.publicKey.length)
+
       try {
+        console.log(
+          'verify?',
+          alg,
+          this.signature,
+          digest,
+          this.certificatePEM)
         const verified = opts.crypto.verify(
           alg,
           this.signature,
@@ -284,6 +299,7 @@ function parseAttestationAuthData(authData) {
 }
 
 module.exports = {
+  parseAttestationAuthData,
   Response,
   Request,
 }

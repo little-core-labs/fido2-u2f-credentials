@@ -1,7 +1,7 @@
 {
-  "name": "fido-u2f-credentials",
+  "name": "fido2-u2f-credentials",
   "version": "0.0.1",
-  "description": "Create and get FIDO U2F credentials",
+  "description": "Create and get FIDO2 U2F credentials in the browser and node.js",
   "browser": "browser.js",
   "main": "index.js",
   "scripts": {
@@ -9,20 +9,45 @@
   },
   "keywords": [
     "fido",
+    "fido2",
     "u2f",
-    "credentials"
+    "credentials",
+    "browser",
+    "native"
   ],
   "author": "Joseph Werle <joseph.werle@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "node-gyp": "^5.0.0",
+    "prebuildify": "^3.0.0",
     "tape": "^4.10.1"
   },
   "dependencies": {
+    "base64url": "^3.0.1",
     "borc": "^2.1.0",
+    "crypto-browserify": "^3.12.0",
     "debug": "^4.1.1",
     "elliptic": "^6.4.1",
     "extend": "^3.0.2",
+    "hid": "^1.0.0",
+    "hidraw-native": "^0.2.2",
+    "ioctl-native": "^0.1.0",
+    "is-zero-buffer": "^1.0.1",
+    "napi-macros": "^1.8.2",
+    "node-gyp-build": "^4.1.0",
     "parse-asn1": "^5.1.4",
-    "sshpk": "^1.16.1"
-  }
+    "sshpk": "^1.16.1",
+    "tder": "0.0.8"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jwerle/fido2-u2f-credentials.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jwerle/fido2-u2f-credentials/issues"
+  },
+  "homepage": "https://github.com/jwerle/fido2-u2f-credentials#readme"
 }
